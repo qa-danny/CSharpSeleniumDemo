@@ -2,31 +2,26 @@ using CSharpSeleniumDemo.Utils;
 using CSharpSeleniumDemo.Pages;
 using OpenQA.Selenium;
 
-namespace CSharpSeleniumDemo.Tests
-{
+namespace CSharpSeleniumDemo.Tests {
     public class HomePageTests : TestBase {
-        [Ignore("Don't run this test for now")]
-        [Test]
-        public void HomePageLoadsSuccessfully()
-        {
-            var home = new HomePage(driver!);
-            home.GoTo();
+        private HomePage homepage;
 
-            // Assert that the page URL is correct
-            Assert.That(driver!.Url, Is.EqualTo("https://academybugs.com/"));
-
-            // Assert that the logo or brand text is visible (or whatever you want to verify)
-            // string logo = home.GetLogoText();
-            // Assert.That(logo, Is.Not.Empty, "Logo text should be present on the home page.");
+        [SetUp]
+        public void TestSetup() {
+            homepage = new HomePage(driver!);
+            homepage.NavigateToHomePage();
         }
 
         [Test]
-        public void NavigateToFindBugsPage()
-        {
-            var home = new HomePage(driver!);
-            home.GoTo();
+        public void HomePageLoadsSuccessfully() {
+            string title = homepage.GetPageTitle();
 
-            home.ClickFindBugs();
+            Assert.That(title, Does.Contain("AcademyBugs.com"), "Page title should contain specific text.");
+        }
+
+        [Test]
+        public void NavigateToFindBugsPage() {
+            homepage.ClickFindBugs();
 
             // Assert that after click, the Find Bugs page is loaded
             // Based on site behavior: path should contain "/find-bugs/"
