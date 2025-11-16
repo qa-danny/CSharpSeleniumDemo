@@ -1,0 +1,24 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio / Rider / VS Code files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider files
+.idea/
+
+# VS Code files
+.vscode/
+
+# Test results
+TestResults/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
