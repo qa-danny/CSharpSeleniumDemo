@@ -1,9 +1,7 @@
 using OpenQA.Selenium;
 
-namespace CSharpSeleniumDemo.Pages
-{
-    public class HomePage
-    {
+namespace CSharpSeleniumDemo.Pages {
+    public class HomePage {
         private readonly IWebDriver driver;
         private const string Url = "https://academybugs.com/";
 
@@ -27,7 +25,7 @@ namespace CSharpSeleniumDemo.Pages
         }
 
         public string GetHeadingText() {
-            var heading = driver.FindElement(By.CssSelector("h3"));
+            var heading = driver.FindElement(By.CssSelector(".sq-section h3"));
             return heading.Text;
         }
 

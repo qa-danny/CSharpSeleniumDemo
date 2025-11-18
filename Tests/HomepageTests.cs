@@ -15,7 +15,8 @@ namespace CSharpSeleniumDemo.Tests {
         [Test]
         public void HomePageLoadsSuccessfully() {
             string title = homepage.GetPageTitle();
-
+            string heading = homepage.GetHeadingText();
+            Assert.That(heading, Is.EqualTo("Examples of Bugs"), "Heading should match expected text."); 
             Assert.That(title, Does.Contain("AcademyBugs.com"), "Page title should contain specific text.");
         }
 
