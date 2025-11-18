@@ -13,3 +13,4 @@ This is a NUnit + Selenium WebDriver C# project skeleton with Page Object Model 
 
 ```bash
 dotnet test
+```

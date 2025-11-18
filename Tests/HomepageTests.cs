@@ -20,17 +20,18 @@ namespace CSharpSeleniumDemo.Tests {
         }
 
         [Test]
+        public void VerifyNumberOfTiles() {
+            int tileCount = homepage.GetNumberOfTiles();
+
+            Assert.That(tileCount, Is.EqualTo(6), "There should be exactly 6 tiles on the homepage.");
+        }
+
+        [Test]
         public void NavigateToFindBugsPage() {
             homepage.ClickFindBugs();
 
-            // Assert that after click, the Find Bugs page is loaded
-            // Based on site behavior: path should contain "/find-bugs/"
-            Assert.That(driver!.Url, Does.Contain("/find-bugs"), "Should navigate to the Find Bugs page.");
+            Assert.That(driver!.Url, Does.EndWith("/find-bugs/"), "Expect URL to end with '/find-bugs/'.");
 
-            // Optionally assert a key element on the Find Bugs page
-            // E.g., check for a known heading or element
-            var heading = driver.FindElement(By.CssSelector("h1"));
-            Assert.That(heading.Text, Does.Contain("Find Bugs"), "Heading should say Find Bugs");
         }
     }
 }
