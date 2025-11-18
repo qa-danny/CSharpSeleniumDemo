@@ -21,10 +21,17 @@ namespace CSharpSeleniumDemo.Tests {
         }
 
         [Test]
-        public void VerifyNumberOfTiles() {
+        public void VerifyNumberOfTilesAndText() {
             int tileCount = homepage.GetNumberOfTiles();
+            List<string> tileTexts = homepage.GetTextOfAllTiles();
 
             Assert.That(tileCount, Is.EqualTo(6), "There should be exactly 6 tiles on the homepage.");
+            // Not necessarily the best asssertion here, but sufficient for demo purposes.
+            Assert.That(tileTexts.Count, Is.EqualTo(6), "There should be exactly 6 tiles on the homepage.");
+            // Verify that specific tile header texts are present
+            Assert.That(tileTexts.Any(text => text.Contains("Social share button")), "Tile text should contain 'Social Share Button'.");
+            Assert.That(tileTexts.Any(text => text.Contains("Video player")), "Tile text should contain 'Video player'.");
+            Assert.That(tileTexts.Any(text => text.Contains("SEARCH BUTTON LEADS TO AN ERROR", StringComparison.OrdinalIgnoreCase)), "Tile text should contain 'Search button leads to an error'.");
         }
 
         [Test]

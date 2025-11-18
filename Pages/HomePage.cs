@@ -34,6 +34,26 @@ namespace CSharpSeleniumDemo.Pages {
             return tiles.Count;
         }
 
+        /// <summary>
+        /// Get the text of all tile headings on the homepage.
+        /// </summary>
+        /// <returns> List<string>, text of all tiles </returns>
+        public List<string> GetTextOfAllTiles() {
+            var tiles = driver.FindElements(By.CssSelector(".example-tile-heading"));
+            // Use List instead of Array. Array's are immutable (has fixed size once created). Lists can grow or 
+            List<string> tileTexts = new List<string>();
+            foreach (var tile in tiles) {
+                if (tile.Displayed)
+                {
+                    tileTexts.Add(tile.Text);
+                }
+            }
+            for (int i = 0; i < tileTexts.Count; i++) {
+                Console.WriteLine(tileTexts[i]);
+            }
+            return tileTexts;
+        }
+
         private void CheckAndClosePopUp() {
             var tutorialPopUp = driver.FindElements(By.CssSelector(".TourTip.TourTipTransitOpacity"));
             if (tutorialPopUp.Count > 0) {
